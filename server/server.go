@@ -46,7 +46,7 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		return
 	}
-	// API curl -X POST -d "input=Hello&banner=shadow" -H "Accept: text/plain" http://localhost:8080/
+	
 	// Check the Accept header to determine response type
 	acceptHeader := r.Header.Get("Accept")
 	if acceptHeader == "text/plain" {
@@ -63,7 +63,6 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 // RenderTemplate renders and executes templates
 func RenderTemplate(w http.ResponseWriter, templateFile string, data *PageData) {
 	var err error
-	// Parse the template file
 	Tmpl, err = template.ParseFiles(templateFile)
 	if err != nil {
 		log.Printf("Error parsing template: %v", err)
@@ -87,7 +86,6 @@ func handleError(w http.ResponseWriter, data *PageData, statusCode int, errMsg s
 	log.Println(logMsg)
 	// Set the status code here
 	w.WriteHeader(statusCode)
-	// Render the template after setting the status code
 	RenderTemplate(w, "templates/index.html", data)
 }
 
