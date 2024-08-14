@@ -1,75 +1,63 @@
-# ascii-art-web-dockerize
-Ascii-art-web entails containerizing of the ascii-art-web project using Docker. The project includes a Dockerfile to build the Docker image and run the web server in a container.
+# ASCII Art Web Export File
+
+This is a simple Go server that generates ASCII art from text input using various banner styles. The server provides both a web interface and an API that can be used to generate ASCII art.
 
 ## Features
-- Converts text to ASCII art
-- Displays the ASCII art on a HTML template on a web browser.
-- Utilizes specific graphical templates for ASCII representation
-- Containerization of the application using Docker.
+
+- Generate ASCII art from text input.
+- Choose from various banner styles.
+- Download the generated ASCII art as a `.txt` file.
+- Use the server as an API to generate ASCII art programmatically.
+- You can integrate this API into other web or server-side applications
+
 
 ## Prerequisites
-
-- Docker: Ensure Docker is installed on your system. You can download it from [Docker's official website](https://www.docker.com/get-started).
 - Go: Make sure you have Go installed. Instructions can be found at [Go's official website](https://golang.org/doc/install).
+
+## Containeriztion
+To run the web server using docker you can run the application using run.sh script file.
+Ensure Docker is installed on your system. You can download it from [Docker's official website](https://www.docker.com/get-started).
+
 
 
 ## Installation
 
 1. Clone the repository:
 
-    git clone <a>https://learn.zone01kisumu.ke/git/rodnochieng/ascii-art-web-dockerize</a>
+    git clone <a>https://learn.zone01kisumu.ke/git/rodnochieng/ascii-art-web-export-file</a>
 
 
 2. Navigate to the project directory:
 
     ```bash
-    cd ascii-art-web-dockerize
+    cd ascii-art-web-export-file
     ```
  
 ## Usage
-To be able to containerize the application, you first need to build the docker image: 
-```
-docker build -t <name_of_the_image> .
-```
 
-or
+Start the server by navigatig to the root folder containing main.go and run:
 
-```
-docker image build -f Dockerfile -t <name_of_the_image> .
-```
-The second step is to run the Docker Container
-```
-docker run -d -p <port_you_what_to_run> --name <name_of_the_container>  <name_of_the_image>
-```
+``` go run main.go ```
 
-or  
-```
-docker container run -p <port_you_what_to_run> --detach --name <name_of_the_container> <name_of_the_image>
-```
-
-You can also build a docker image and run a docker container by running a shell script as it can can streamline the process and make it repeatable. 
-
-Once you have created your shell script, you can run it ising the following command:
-```
-sh <name_of_script>.sh
-```
-For example:
-```
-sh run.sh
-```
+For docker, you can also build a docker image and run a docker container by running a shell script as it can can streamline the process and make it repeatable. 
 
 
-When the container is running you go to your browser and type the link:
-```
-'http://localhost:<port_you_want_to_run>'
-```
+When the server or container is running you go to your browser and type the link:
 
-For example: 
-```
-'http://localhost:8080'
-```
+``` http://localhost:8080 ```
 
 You should see the main page where you can input text and select a banner. After submitting, you will be able to see the generted ASCII art in the specified format.
+
+## API Usage
+
+You can use the server as an API to generate ASCII art programmatically.
+You can use curl to send a POST request and get the ASCII art as a plain text response:
+``` 
+curl -X POST -d "input=Hello&banner=shadow" -H "Accept: text/plain" http://localhost:8080/
+```
+If required parameters (input or banner) are missing, the API will return a 400 Bad Request status with an appropriate error message.
+
+Errors will be returned as plain text if the Accept header is set to text/plain.
 
 ## Testing 
 To run the tests present do the following:
