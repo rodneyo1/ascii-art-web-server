@@ -1,4 +1,4 @@
-# ASCII Art Web Export File
+# ASCII Art Web
 
 This is a simple Go server that generates ASCII art from text input using various banner styles. The server provides both a web interface and an API that can be used to generate ASCII art.
 
