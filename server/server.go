@@ -60,7 +60,6 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-
 // RenderTemplate renders and executes templates
 func RenderTemplate(w http.ResponseWriter, templateFile string, data *PageData) {
 	var err error
